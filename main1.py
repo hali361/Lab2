@@ -1,4 +1,10 @@
-def remove_stop_words(text: str, stop_words: set) -> list:
+
+def load_stopwords(file_path: str) -> set:
+    with open(file_path, 'r') as file:
+        stop_words = set(file.read().lower().splitlines())
+    return stop_words
+
+def remove_stopwords(text: str, stop_words: set) -> list:
     words = [word.strip('.,') for word in text.split()]
     filtered_words = [word for word in words if word and word.lower() not in stop_words]
     return filtered_words
@@ -38,11 +44,10 @@ def extract_unique_words(frequency_a: dict, frequency_b: dict) -> tuple[dict, di
 
 def main():
     with (
-        open('stopwords.txt', 'r') as stop_file,
-        open('TextA.txt', 'r') as file_a,
-        open('TextB.txt', 'r') as file_b,
+        open('data/TextA.txt', 'r') as file_a,
+        open('data/TextB.txt', 'r') as file_b,
     ):
-        stop_words = set(stop_file.read().splitlines())
+        stop_words = load_stopwords('data/stopwords.txt')
         text_a = file_a.read()
         text_b = file_b.read()
 
@@ -51,8 +56,8 @@ def main():
     total_words_b = len(text_b.split())
 
     #filter stop words from both texts
-    filtered_text_a = remove_stop_words(text_a, stop_words)
-    filtered_text_b = remove_stop_words(text_b, stop_words)
+    filtered_text_a = remove_stopwords(text_a, stop_words)
+    filtered_text_b = remove_stopwords(text_b, stop_words)
 
     #calculate frequency of 'key' words in both texts
     frequency_a = calculate_frequency(filtered_text_a)
