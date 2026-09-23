@@ -45,7 +45,7 @@ def main():
     filtered_text_a = filter_stopwords(text_a, stop_words)
     filtered_text_b = filter_stopwords(text_b, stop_words)
 
-        #will use later to calculate relative frequency
+    #will use later to calculate relative frequency
     total_words_a = len(filtered_text_a)
     total_words_b = len(filtered_text_b)
 
@@ -67,6 +67,7 @@ def main():
 
     print("Filtered Document A (excluding stop words):")
     print(filtered_text_a)
+
     print("Filtered Document B (excluding stop words):")
     print(filtered_text_b)
 
