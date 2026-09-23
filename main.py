@@ -77,7 +77,7 @@ def main():
     print(term_freq_b)
 
     #printing of unique words and their frequencies
-    print("Words that occur in both documents:")
+    print("\nWords that occur in both documents:")
     print(non_unique_words)
 
     print("\nTerm frequency of words unique to Document A (excluding stop words):")
